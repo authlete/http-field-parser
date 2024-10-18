@@ -4,7 +4,7 @@
 
     <groupId>com.authlete.http</groupId>
     <artifactId>http-field-parser</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>HTTP Field Parser</description>
@@ -30,7 +30,7 @@
         <connection>scm:git:git@github.com:authlete/http-field-parser.git</connection>
         <developerConnection>scm:git:git@github.com:authlete/http-field-parser.git</developerConnection>
         <url>https://github.com/authlete/http-field-parser.git</url>
-        <tag>HEAD</tag>
+        <tag>http-field-parser-1.0</tag>
     </scm>
 
     <properties>
