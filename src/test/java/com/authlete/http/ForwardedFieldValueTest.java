@@ -92,4 +92,42 @@ public class ForwardedFieldValueTest
 
         assertEquals("for=1, for=2", ffv.toString());
     }
+
+
+    @Test
+    public void test_comma_in_quoted_string()
+    {
+        // A field value with quoted strings including commas.
+        String fieldValue = "for=\"a,b\", for=\"c,d\"";
+
+        // Parse the field value.
+        ForwardedFieldValue ffv = ForwardedFieldValue.parse(fieldValue);
+
+        assertEquals(2, ffv.size());
+
+        // The commas in the quoted strings must not be interpreted as
+        // delimiters between forwarded elements.
+        assertEquals("a,b", ffv.get(0).getFor());
+        assertEquals("c,d", ffv.get(1).getFor());
+    }
+
+
+    @Test
+    public void test_semicolon_in_quoted_string()
+    {
+        // A field value with quoted strings including semicolons.
+        String fieldValue = "for=\"a;b\";proto=https, for=\"c;d\";host=example.com";
+
+        // Parse the field value.
+        ForwardedFieldValue ffv = ForwardedFieldValue.parse(fieldValue);
+
+        assertEquals(2, ffv.size());
+
+        // The semicolons in the quoted strings must not be interpreted as
+        // delimiters between forwarded pairs.
+        assertEquals("a;b", ffv.get(0).getFor());
+        assertEquals("https", ffv.get(0).getProto());
+        assertEquals("c;d", ffv.get(1).getFor());
+        assertEquals("example.com", ffv.get(1).getHost());
+    }
 }
